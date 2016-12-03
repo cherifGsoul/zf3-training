@@ -1,0 +1,1141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Formation Zend framework 3</title>
+  <!--<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,900,700,500' rel='stylesheet' type='text/css'>-->
+  <link rel="stylesheet" href="theme/font-awesome.css">
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+  padding: 30px;
+
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+* {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 100;
+  color: #333333;
+  background: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, p, ul {
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 900;
+  margin: 20px 0 20px 0;
+}
+
+h2 {
+  color: #AAAAAA;
+  font-weight: 500;
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+p {
+  font-weight: 100;
+  font-size: 0.9em;
+}
+
+ul {
+  padding: 20px 0 20px 60px;
+  font-size: 0.9em;
+}
+
+.progress-bar {
+  background: #DF6868;
+}
+
+.logo {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+@media (max-width: 979px) {
+  .logo {
+    height: 120px;
+    width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+/*  min-height: 600px;
+  min-width: 800px;
+  max-height: 800px;
+  max-width: 1200px;*/
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.title .slide-content {
+  display: table;
+}
+
+.title h1 {
+  display: table-cell;
+  vertical-align: middle;
+  z-index: 10;
+}
+
+.presenter img {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  border: 5px solid #AAAAAA;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.presenter h2 {
+  color: #333333;
+}
+.presenter p {
+  text-align: center;
+}
+
+.presenter ul {
+  width: 100%;
+  padding: 0;
+  margin: 10px 0;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.presenter li {
+  display: inline;
+  padding: 0 10px;
+}
+
+.sponsors h1 {
+  margin: 20px 0 40px 0;
+}
+
+.sponsors p {
+  float: left;
+  text-align: center;
+  width: 50%;
+  padding: 0 20px;
+}
+
+.sponsors p > img {
+  width: 100%;
+  max-width: 240px;
+}
+
+.image p > img {
+  max-width: 600px;
+  max-height: 400px;
+  margin: 20px auto;
+  display: table-cell;
+}
+
+pre {
+  font-size: 90% !important;
+}
+
+#jasmine, #qunit, #mocha {
+  font-size: 2em;
+}
+
+#jasmine {
+  margin-top: 0.5em;
+  float: left;
+}
+
+#qunit {
+  margin-top: 3em;
+  margin-right: 1em;
+  float: right;
+}
+
+#mocha {
+  margin-top: 6em;
+  margin-left: 2em;
+}
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h2 id="-structure-img-logo-zendframework-png-"><img src="img/logo-zendframework.png" alt="structure"></h2>
+<h3 id="objectif">Objectif</h3>
+<ul>
+<li>Comprendre et utiliser ZEND framework</li>
+<li>Etre capable de mettre en place et gérer une application avec Zend Framework</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h3 id="plan-de-la-formation">Plan de la formation</h3>
+<h4 id="jour-1">Jour 1</h4>
+<ul>
+<li>Introduction au Zend Framework 3</li>
+<li>Rappel PHP OO et PHP avancé</li>
+<li>Présentation de l&#39;approche MVC: Modèle Vue Controleur</li>
+<li>Installation et configuration d&#39;une application ZF 2</li>
+<li>Les Modules</li>
+</ul>
+<h4 id="jour-2">Jour 2</h4>
+<ul>
+<li>Les Contrôleurs</li>
+<li>Le Routes</li>
+<li>Les Vues</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h3 id="plan-de-la-formation">Plan de la formation</h3>
+<h4 id="jour-3">Jour 3</h4>
+<ul>
+<li>Gestion de bases de données</li>
+<li>Gestion des formulaires</li>
+</ul>
+<h4 id="jour-4-et-5">Jour 4 et 5</h4>
+<ul>
+<li>Etude de Cas</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="introduction">Introduction</h3>
+<p>Zend Framework 3 est un framework libre et open-source PHP. Son développement est guidé (et parrainé) par Zend Technologies, qui est également connu comme le fournisseur de la langue PHP. La première version (Zend Framework 1) a été publiée en 2007; Zend Framework 2, la deuxième version de ce logiciel, a été publié en Septembre 2012. Zend Framework 3 a été publié en Juin 2016.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="introduction">Introduction</h3>
+<p>Zend Framework 3 vous offre les fonctionnalités suivantes:</p>
+<ul>
+<li>Développez votre application beaucoup plus rapidement que lorsque vous l&#39;écrivez en PHP pur. ZF3 fournit de nombreux composants qui peuvent être utilisés comme base de code pour créer votre application.</li>
+<li>Coopération plus facile avec les autres membres de l&#39;équipe de construction de votre site. Model-View-Controller modèle utilisé par ZF3 permet de séparer la logique métier et la couche de présentation de votre application, rendant sa structure cohérente et maintenable.</li>
+<li>Extensier votre application avec le concept de modules. ZF3 utilise le terme module, permettant de séparer les pièces du site découplé, permettant ainsi de réutiliser les modèles, les vues, les contrôleurs et les ressources de votre site dans d&#39;autres travaux.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="introduction">Introduction</h3>
+<ul>
+<li>Accès à la base de données de manière orientée objet. Au lieu d&#39;interagir directement avec la base de données à l&#39;aide de requêtes SQL, vous pouvez utiliser Doctrine Object-Relational Mapping (ORM) pour gérer la structure et les relations entre vos données. Avec Doctrine, vous mappez votre table de base de données à une classe PHP (également appelée une classe d&#39;entité) et une ligne de cette table est mappée à une instance de cette classe. Doctrine permet d&#39;abstraire le type de base de données et de rendre le code plus facile à comprendre.</li>
+<li>Ecrire des sites Web sécurisés avec des composants fournis par ZF3, comme des filtres d&#39;entrée de formulaire et des validateurs, des échappements de sortie HTML et des algorithmes de cryptographie, des contrôles humains (Captcha) et Cross-Site Request Forgery (CSRF).</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-classes-abstraites">Les classes abstraites</h4>
+<ul>
+<li>Sont des classes qu&#39;on peut pas instanciées</li>
+<li>Contienent des méthodes concrétes et des méthodes abstraites</li>
+<li>Lors de l&#39;héritage d&#39;une classe abstraite, toutes les méthodes marquées comme abstraites dans la déclaration de la classe parente doivent être définies par l&#39;enfant, même le constructeur (5.4).</li>
+</ul>
+<p>Exemple:</p>
+<pre><code class="lang-php"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractTask</span> </span>{
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assignOwner</span><span class="hljs-params">($owner)</span>
+  </span>{
+    $this-&gt;owner = $owner;
+  }
+
+  <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateProgression</span><span class="hljs-params">()</span></span>;
+}</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-interfaces">Les interfaces</h4>
+<ul>
+<li>Les interfaces objet vous permettent de créer du code qui spécifie quelles méthodes une classe doit implémenter, sans avoir à définir comment ces méthodes fonctionneront.</li>
+<li>Les interfaces sont définies en utilisant le mot-clé interface, de la même façon que pour une classe standard, mais sans qu&#39;aucune des méthodes n&#39;ait son contenu de spécifié.</li>
+<li>De par la nature même d&#39;une interface, toutes les méthodes déclarées dans une interface doivent être publiques.</li>
+</ul>
+<p>Exemple:</p>
+<pre><code class="lang-php"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BookingServiceInterface</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bookRoom</span><span class="hljs-params">($customerId,$roomId)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bookSuite</span><span class="hljs-params">($customerId,$roomId)</span></span>;
+}</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-traits-5-4-">Les traits (5.4)</h4>
+<ul>
+<li>Les traits sont un mécanisme de réutilisation de code dans un langage à héritage simple tel que PHP.</li>
+<li>Un trait tente de réduire certaines limites de l&#39;héritage simple, en autorisant le développeur à réutiliser un certain nombre de méthodes dans des classes indépendantes. La sémantique entre les classes et les traits réduit la complexité et évite les problèmes typiques de l&#39;héritage multiple et des Mixins.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-m-thodes-magiques">Les méthodes magiques</h4>
+<ul>
+<li>Les « méthodes magiques », qui sont toujours préfixées par ‘__’ sont
+utilisées par PHP pour exécuter automatiquement du code lorsqu’un
+événement se produit.</li>
+</ul>
+<pre><code>__construct(), __destruct(), __call(), __callStatic(), __get(), __set(),
+__isset(), __unset(), __sleep(), __wakeup(), __toString(),
+__invoke(), __set_state() __clone() et __debugInfo()</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-espaces-de-noms">Les espaces de noms</h4>
+<p>Dans le monde PHP, les espaces de noms sont conçus pour résoudre
+deux problèmes que rencontrent les auteurs de librairies et
+d&#39;applications lors de la réutilisation d&#39;éléments tels que des classes
+ou des bibliothèques de fonctions :</p>
+<ol>
+<li>Collisions de noms entre le code que vous créez, les classes, fonctions ou
+constantes internes de PHP, ou celles de librairies tierces.</li>
+<li>La capacité de faire des alias ou de raccourcir des Noms_Extremement_Long
+pour aider à la résolution du premier problème, et améliorer la lisibilité du
+code.</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-espaces-de-noms">Les espaces de noms</h4>
+<ul>
+<li>Bien que du code PHP valide puisse être contenu dans un espace de noms, seuls les types de code suivants peuvent être affectés par les espaces de noms : les classes (incluants les abstraites et les traits), les interfaces, les fonctions et les constantes.</li>
+<li>Les espaces de noms sont déclarés avec le mot-clé namespace. Un fichier contenant un espace de noms doit déclarer l&#39;espace au début du fichier, avant tout autre code, avec une seule exception : le mot clé <code>declare</code>.</li>
+</ul>
+<p>Exemple:</p>
+<pre><code class="lang-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Db</span>\<span class="hljs-title">Table</span>;</code></pre>
+<ul>
+<li>Les segments de l’espace de nom sont séparés par un &#39;\&#39;</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="les-espaces-de-noms">Les espaces de noms</h4>
+<ul>
+<li>Une classe est appelée avec son espace de noms
+Exemple:<pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Db</span>\<span class="hljs-title">Table</span>\<span class="hljs-title">UserTable</span>;
+<span class="hljs-comment">// Où</span>
+<span class="hljs-keyword">new</span> \App\Db\Table\UserTable($params);</code></pre>
+</li>
+<li>Une classe peut être liée à un alias qui sera ensuite utilisé dans le code :<pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Db</span>\<span class="hljs-title">Table</span>\<span class="hljs-title">UserTable</span> <span class="hljs-title">as</span> <span class="hljs-title">MemberTable</span>;
+<span class="hljs-comment">// quelque part dans le code</span>
+<span class="hljs-keyword">new</span> MemberTable;</code></pre>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="rappel-php-oo-et-php-avanc-">Rappel PHP OO et PHP avancé</h3>
+<h4 id="l-autoloading-chargment-automatique-">L&#39;Autoloading (Chargment automatique)</h4>
+<ul>
+<li>Les espaces de noms ne sont pas (eux) magiques.</li>
+<li>Leur rôle est de discriminer les noms.</li>
+<li>Pour trouver et charger la classe, il faut, en plus, écrire une fonction
+__autoload() qui, en fonction de l’espace de nom, saura retrouver le
+fichier à un placement donné sur le serveur.</li>
+<li>La limite de __autoload est qu&#39;elle est une seul fonction</li>
+<li>Avec spl_autoload_register plus qu&#39;un seul autoloader peut être enregistrer</li>
+<li>Utilisez toujours un autloader prêt à l&#39;emploi (Composer)</li>
+<li>Créez votre namespace en suivant les standards PSR-0 (dépricié), PSR-4.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-c-ntroleur">Présentation de l&#39;approche MVC: Modèle Vue Côntroleur</h3>
+<h2 id="-structure-img-design_pattern_mvc-jpeg-"><img src="img/design_pattern_mvc.jpeg" alt="structure"></h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-c-ntroleur">Présentation de l&#39;approche MVC: Modèle Vue Côntroleur</h3>
+<h4 id="mod-le-m-">Modèle (M)</h4>
+<ul>
+<li>cette partie gère les données de votre site. Son rôle est d&#39;aller récupérer les informations « brutes » dans la base de données, de les organiser et de les assembler pour qu&#39;elles puissent ensuite être traitées par le contrôleur. On y trouve donc les requêtes SQL.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-controleur">Présentation de l&#39;approche MVC: Modèle Vue Controleur</h3>
+<h4 id="vue-v-">Vue (V)</h4>
+<ul>
+<li>cette partie se concentre sur l&#39;affichage. Elle ne fait presque aucun calcul et se contente de récupérer des variables pour savoir ce qu&#39;elle doit afficher. On y trouve essentiellement du code HTML mais aussi quelques boucles et conditions PHP très simples, pour afficher par exemple la liste des messages des forums.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-controleur">Présentation de l&#39;approche MVC: Modèle Vue Controleur</h3>
+<h4 id="c-ntrolleur-c-">Côntrolleur (C)</h4>
+<ul>
+<li>cette partie gère la logique du code qui prend des décisions. C&#39;est en quelque sorte l&#39;intermédiaire entre le modèle et la vue : le contrôleur va demander au modèle les données, les analyser, prendre des décisions et renvoyer le texte à afficher à la vue. Le contrôleur contient exclusivement du PHP. C&#39;est notamment lui qui détermine si le visiteur a le droit de voir la page ou non (gestion des droits d&#39;accès).</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-controleur">Présentation de l&#39;approche MVC: Modèle Vue Controleur</h3>
+<h4 id="avantages">Avantages</h4>
+<ul>
+<li>L’architecture MVC schématise des rapports très clairs entre les différents composants de l’application</li>
+<li>Son fonctionnement n’est pas hiérarchique, ce qui autorise les vues à envoyer des requêtes directement au modèle.</li>
+<li>Elle facilite le partage des tâches en matière de développement (entreles différents métiers).</li>
+<li>Les relations entre les composants sont à priori asynchrones.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="pr-sentation-de-l-approche-mvc-mod-le-vue-controleur">Présentation de l&#39;approche MVC: Modèle Vue Controleur</h3>
+<h4 id="limites">Limites</h4>
+<ul>
+<li>MVC est surtout conçu pour gérer le rafraîchissement simultané de plusieurs vues, ce qui n’est pas le cas des applications web (peut-être à venir avec les WebSockets)</li>
+<li>Dans les applications web, il y a une ambiguïté sur les vues qui sont à la fois des pages et le code exécuté par le navigateur et le code côté serveur chargé de composer l’interface (les moteurs de template)</li>
+<li>Une approche moderne de contrôleurs minces laisse de côté toute une partie du code qui ne se retrouve pas non plus dans le modèle</li>
+<li>L’interprétation de MVC varie énormément entre les implémentations</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="installation-d-une-application-zf-3">Installation d&#39;une application ZF 3</h3>
+<h4 id="avec-l-application-skeleton">Avec l&#39;application Skeleton</h4>
+<ul>
+<li>L&#39;installation d&#39;une application Zend Framework 3 se fait a l&#39;aide de composer avec la commande:</li>
+</ul>
+<p><code>composer create-project -sdev zendframework/skeleton-application chemin/de/application</code></p>
+<ul>
+<li>Cette commande  installe la derniére version stable</li>
+<li>La derniére version stable pendant qu&#39;on fais ce cours est 3.0.0 pour PHP &gt;= 5.6 et 2.5.3 pour PHP &lt; 5.6</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="installation-d-une-application-zf-3">Installation d&#39;une application ZF 3</h3>
+<h4 id="structure-de-r-pertoire-type">Structure de répertoire type</h4>
+<h2 id="-structure-img-skeleton_dir_structure-png-"><img src="img/skeleton_dir_structure.png" alt="structure"></h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="installation-d-une-application-zf-3">Installation d&#39;une application ZF 3</h3>
+<h4 id="structure-de-r-pertoire">Structure de répertoire</h4>
+<h5 id="les-fichiers">Les fichiers</h5>
+<ul>
+<li><code>composer.json</code> c&#39;est le fchier JSON pour la configuration de composer</li>
+<li><code>composer.lock</code> fichier contient les informations des packages installés avec composer.</li>
+<li><code>docker-compose.yml</code> et <code>Dockerfile</code> Sont des fichiers auxiliaires utilisés seulement si vous utilisez Doker.</li>
+<li><code>LICENSE.md</code> le fichier de la license ZF3</li>
+<li><code>phpunit.xml.dist</code> fihcier de configuration phpunit</li>
+<li><code>README.md</code> Une breve description de &quot;skeleton application&quot;, pratiquement vous allez le changer par les iformations de votre Application</li>
+<li><code>TODO.md</code> un fichier auxiliaire qui peut être supprimer</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h3 id="installation-d-une-application-zf-3">Installation d&#39;une application ZF 3</h3>
+<h5 id="les-dossiers">Les Dossiers</h5>
+<ul>
+<li><code>config</code> contient les fichiers de configuration de l&#39;application</li>
+<li><code>data</code> contient les données que notre application peut généré, il peut contient le cache utilisé pour augmenter la performance</li>
+<li><code>module</code> contient les modules de l&#39;application, pour le moment il contient un seul module, s&#39;appel <code>Application</code></li>
+<li><code>vendor</code> ce repertoire contient les librairie tierce, en occurence ZF3 lui même</li>
+<li><code>public</code> si le seul répertoire accessible par l&#39;utilisateur final (L&#39;internaute), à travers <code>index.php</code></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h2 id="-structure-img-config-png-"><img src="img/config.png" alt="structure"></h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="fichiers-de-configuration-au-niveau-de-l-application">Fichiers de configuration au niveau de l&#39;application</h4>
+<ul>
+<li><code>application.config.php</code> Est le fichier de configuration principal. Il est utilisé par l&#39;application au démarrage pour déterminer quels modules d&#39;application doivent être chargés et quels services créer par défaut.</li>
+<li><code>modules.config.php</code> est le fichier qui contient la liste des modules utilisé par cette application
+En résumé:</li>
+<li>en utilise <code>application.config.php</code> pour mettre les informations des modules qui doivent être chargés</li>
+<li>Pour les configurations supplémentaires en utilise <code>autoload/global.php</code></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="fichiers-de-configuration-suppl-mentaires-au-niveau-de-l-application">Fichiers de configuration supplémentaires au niveau de l&#39;application</h4>
+<p>les fichiers <code>config/autoload/global.php</code> et les fichiers <code>config/autoload/local.php</code>
+définissent respectivement les paramètres dépendant de l&#39;environnement et de l&#39;environnement
+à l&#39;échelle de l&#39;application. Ces fichiers de configuration sont automatiquement
+chargés et fusionnés de manière récursive avec les fichiers de configuration fournis par module,
+c&#39;est pourquoi leur répertoire est nommé <code>autoload</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="fichier-de-configuration-du-d-veloppement-au-niveau-de-l-application">Fichier de configuration du développement au niveau de l&#39;application</h4>
+<ul>
+<li><p>Le fichier de configuration de développement au niveau de l&#39;application (config/development.config.php)
+s&#39;affiche uniquement lorsque vous activez le mode de développement.</p>
+</li>
+<li><p>Vous activez le mode de développement avec la commande suivante:
+<code>composer development-enable</code></p>
+</li>
+<li>Le fichier <code>development.config.php</code> est fusionné avec le fichier principal application.config.php. Cela vous permet de remplacer certains paramètres. Par exemple, vous pouvez:<ul>
+<li>Désactivez la mise en cache des configurations. Lorsque vous développez votre application,
+vous modifiez fréquemment vos fichiers de configuration, de sorte que la mise en
+cache des configurations peut avoir des conséquences indésirables, comme l&#39;impossibilité
+de voir immédiatement le résultat de vos modifications.</li>
+<li>Charger des modules supplémentaires. Par exemple, vous ne pouvez charger le module ZendDeveloperTools qu&#39;en mode de développement.</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="fichier-de-configuration-du-d-veloppement-au-niveau-de-l-application">Fichier de configuration du développement au niveau de l&#39;application</h4>
+<ul>
+<li>Si vous désactivez le mode de développement, le fichier <code>development.config.php</code> sera supprimé.
+Donc, vous ne devez pas stocker ce fichier dans le systéme de contrôle de version (GIT, SVN).</li>
+<li>Au lieu de cela, stockez sa version de distribution, <code>development.config.php.dist</code> dans le systéme de contrôle de version.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-30">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="fichiers-de-configuration-de-d-veloppement-suppl-mentaire-au-niveau-de-l-application">Fichiers de configuration de développement supplémentaire au niveau de l&#39;application</h4>
+<ul>
+<li>Le fichier de configuration de développement supplémentaire au niveau de l&#39;application
+(config/autoload/development.local.php) s&#39;affiche uniquement lorsque vous activez le mode de développement.</li>
+<li><p>Le fichier <code>development.local.php</code> est fusionné avec d&#39;autres fichiers de configuration au niveau module.
+Cela vous permet de remplacer certains paramètres spécifiques au module utilisés
+dans l&#39;environnement de développement uniquement.</p>
+</li>
+<li><p>Si vous désactivez le mode de développement, le fichier <code>development.local.php</code> sera supprimé.
+Donc, vous ne devez pas stocker ce fichier sous le contrôle de version.
+Au lieu de cela, stockez sa version de distribution, <code>development.local.php.dist</code> dans systéme de contrôle de version.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="combinaison-des-fichiers-de-configuration">Combinaison des fichiers de configuration</h4>
+<p>Lors de la création d&#39;une application, les fichiers de configuration fournis par le module
+et les fichiers de configuration supplémentaires du répertoire <code>config/autoload</code> sont fusionnés
+en un seul grand réseau imbriqué, de sorte que chaque paramètre de configuration devient
+accessible à tout élément du application. Ainsi, potentiellement, vous êtes en mesure de remplacer
+certains paramètres spécifiés par les modules.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-32">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="ordre-de-chargement-des-fichiers-de-configuration">Ordre de chargement des fichiers de configuration</h4>
+<p>Les fichiers de configuration sont chargés dans l&#39;ordre suivant:</p>
+<ul>
+<li>Le fichier principal <code>application.config.php</code> est chargé en premier.
+Il sert à initialiser le gestionnaire de services et à charger des modules d&#39;application.
+Les données chargées depuis cette configuration sont stockées seules et ne sont pas fusionnées
+avec d&#39;autres fichiers de configuration.</li>
+<li>Les fichiers de configuration de chaque module d&#39;application sont chargés et fusionnés.
+Les modules sont chargés dans le même ordre qu&#39;ils sont répertoriés dans le fichier <code>application.config.php</code>.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-33">
+    <section class="slide-content"><h3 id="configuration-d-une-application-zf-3">Configuration d&#39;une application ZF 3</h3>
+<h4 id="ordre-de-chargement-des-fichiers-de-configuration">Ordre de chargement des fichiers de configuration</h4>
+<ul>
+<li>Si deux modules stockent (intentionnellement ou par erreur) des paramètres dans les clés de noms similaires, ces paramètres peuvent être écrasés.</li>
+<li>Les fichiers de configuration supplémentaires du dossier <code>config/autoload</code> sont chargés et fusionnés en un seul tableau. Ensuite, ce tableau est fusionné avec le tableau de configuration du module produit à l&#39;étape précédente, lors du chargement de la configuration du module. La configuration à l&#39;échelle de l&#39;application a une priorité supérieure à celle de la configuration du module, vous pouvez donc remplacer la configuration de module ici, si vous le souhaitez.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-34">
+    <section class="slide-content"><h3 id="les-modules">Les modules</h3>
+<h4 id="qu-est-ce-qu-un-module-">Qu&#39;est-ce qu&#39;un &quot;Module&quot; ?</h4>
+<ul>
+<li>Un module est une unité autonome et réutilisable de votre application.</li>
+<li>Par défaut, votre application possède le module Application uniquement.</li>
+<li>Et il est normal de mettre vos modèles, vues et contrôleurs dans ce module (Application), en particulier dans une application simple.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-35">
+    <section class="slide-content"><h3 id="les-modules">Les modules</h3>
+<h4 id="les-modules-de-l-application">Les modules de l&#39;application</h4>
+<ul>
+<li>Les modules d&#39;une application ZF sont hébergés (par defaut) dans le dossier <code>Module</code></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-36">
+    <section class="slide-content"><h3 id="les-modules">Les modules</h3>
+<h4 id="les-modules-tierces">Les modules tierces</h4>
+<ul>
+<li>Les modules tierces sont hébergés dans le dossier <code>vendor</code> dans leurs propre dossier.</li>
+<li>Exemples d&#39;un module tierce:<ul>
+<li>Framework modules comme, Zf TOOLS, Zf Db, ZfValidators</li>
+<li>Doctrine ORM module.</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-37">
+    <section class="slide-content"><h3 id="les-modules">Les modules</h3>
+<h4 id="configuration-d-un-module">Configuration d&#39;un module</h4>
+<ul>
+<li>le fichier de config d&#39;un module se retrouve dans <code>module/NomDuModule/config/module.config.php</code></li>
+<li>la configuration d&#39;un module peut être modifier au niveau de la configuration de l&#39;application</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-38">
+    <section class="slide-content"><div class="author">
+  <h1 class="name">Mohamed Cherif BOUCHELAGHEM</h1>
+    <h3 class="twitter">
+      <a href="http://twitter.com/@cherif_b">@cherif_b</a>
+    </h3>
+    <h3 class="github">
+      <a href="https://github.com/cherifGsoul">cherifGsoul</a>
+    </h3>
+    <h3 class="url">
+      <a href="http://cherifbouchelaghem.com">http://cherifbouchelaghem.com</a>
+    </h3>
+</div>
+</section>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPosition());
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>
